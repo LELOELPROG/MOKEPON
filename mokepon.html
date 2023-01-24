@@ -1,0 +1,67 @@
+<!DOctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>MOKEPON!! TENGO MIL DEMANDAS - MOKEPON!!</title>
+        <script src="./js/mokepon.js"></script>
+    </head>
+    <body>
+        <h1>
+            MOKEPON!!! 🔥💧🌱 
+        </h1>
+
+        <section id="choose-pet">
+            <h2>Hagame el favor de elegir a su mokepon </h2>
+
+            <input type="radio" name="mascota" id="hipodoge"/>
+            <label for="hipodoge">Hipodoge</label>
+
+            <input type="radio" name="mascota" id="capipepon"/>
+            <label for="capipepon">Capipepon</label>
+
+            <input type="radio" name="mascota" id="ratinga"/>
+            <label for="ratinga">Ratinga</label> <br>
+
+            <input type="radio" name="mascota" id="langostingi"/>
+            <label for="langostingi">Langostingi</label>
+
+            <input type="radio" name="mascota" id="tucapalma"/>
+            <label for="tucapalma">Tucapalma</label>
+
+            <input type="radio" name="mascota" id="paidoz"/>
+            <label for="paidoz">Paidoz</label> <br>
+            
+
+            <!-- Hipodoge -> Agua
+            Capipepon -> Tierra 
+            Ratinga -> Fuego
+            Langostingi -> Agua y Fuego
+            Tucapalma -> Agua y Tierra
+            Paidoz -> Tierra y Fuego -->
+
+
+            <button id="boton-pet">Seleccionar</button>
+        </section>
+
+        <section id="choose-attack">
+            <h2>Ahora eliga el ataque</h2>
+
+            <p>Tu mascota <span id="pet-name-player"></span> tiene <span id="vidas-jugador">3</span> vidas</p>
+            <p>La mascota enemiga <span id="pet-name-enemy"></span> tiene <span id="vidas-enemigo">3</span> vidas</p>
+
+            <p>
+                <button id="boton-fuego" disabled>Fuego 🔥</button>
+                <button id="boton-agua" disabled>Agua 💧</button>
+                <button id="boton-tierra" disabled>Tierra 🌱</button>
+            </p>
+        </section>
+
+        <section id="mensajes">
+            <p>Tu mascota va atacar con y el enemigo atacará con - GANASTE 🎉</p>
+        </section>
+
+        <section id="reiniciar">
+            <button id="boton-reinicio" disabled>Al combate - again</button>
+        </section>
+    </body>
+</html>
