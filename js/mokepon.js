@@ -137,19 +137,15 @@ function fight(){
             fightResult = draw;
         } else if(ataquePlayer == fuego && ataqueEnemy == tierra || ataquePlayer == agua && ataqueEnemy == fuego || ataquePlayer == tierra && ataqueEnemy == agua){
             fightResult = win;
-            vidasEnemy = vidasEnemy - 1;
+            vidasEnemy--;
             spanVidasEnemy.innerHTML = vidasEnemy;
         } else{
             fightResult = lost;
-            vidasPlayer = vidasPlayer - 1;
+            vidasPlayer--;
             spanVidasPlayer.innerHTML = vidasPlayer;
         }
 
         mostrarAtaques();
-    } else{
-        alert("aun esatmos trabajando para mas funciones - version ultra alfa")
-        enableReset();
-        disabledAttack();
     }
 
     disabledPetChosenPlayer();
@@ -157,10 +153,33 @@ function fight(){
 
 function mostrarAtaques(){
     let attacksParagraph = document.createElement("p");
-    var sectionMessage = document.getElementById("mensajes");
+    let sectionMessage = document.getElementById("mensajes");
     attacksParagraph.innerHTML = "Tu mascota ataco con " + ataquePlayer + " y la mascota enemiga con " + ataqueEnemy + "<br />" + fightResult;
     
     sectionMessage.appendChild(attacksParagraph);
+
+    vidasCero();
+}
+
+function finalMessage(){
+    let attacksParagraph = document.createElement("p");
+    let sectionMessage = document.getElementById("mensajes");
+    if(vidasEnemy == 0){
+        attacksParagraph.innerHTML = "Yeeeeeeeeeeeiiiiiiiii CELEBREMOOOOSSS - GANAAAASSTEEEEE EL ENFRENTAMIENTO - TOMA TU ESTRELLITA 🌟"
+    } else if(vidasPlayer == 0){
+        attacksParagraph.innerHTML = "Uy que feo MIRE PARCE PUES - PERDIO EL ENFRENTAMIENTO - PARA LA PROXIMA SERÁ 😖😖😢"
+    }
+    
+    sectionMessage.appendChild(attacksParagraph);
+}
+
+function vidasCero(){
+    if(vidasEnemy == 0 || vidasPlayer == 0){
+        finalMessage();
+        enableReset();
+        disabledAttack();
+        //alert("aun esatmos trabajando para mas funciones - version ultra alfa")
+    }
 }
 
 
@@ -181,7 +200,7 @@ function enableReset(){
 }
 
 function resetGame(){
-    alert("esta funcion aun esta en desarrollo ji ji ji JA");
+    alert("aun esatmos trabajando para mas funciones - version ultra alfa - esta funcion aun esta en desarrollo ji ji ji JA");
     window.location.reload();
 }
 
