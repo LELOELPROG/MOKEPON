@@ -3,6 +3,8 @@ let fuego = "fuego 🔥";
 let tierra = "tierra 🌱";
 
 let availableAttacks = [fuego, agua, tierra];
+let namePets = ["Hipodoge", "Capipepon", "Ratinga", "Langostingi", "Tucapalma", "Paidoz"];
+
 
 let ataqueEnemy;
 let ataquePlayer;
@@ -15,13 +17,19 @@ let draw = "Creo que no ha pasado nada - EMPATE 😒😒😒"
 let vidasPlayer = 3;
 let vidasEnemy = 3;
 
+let ataque = 0;
 
+let botonMascotaPlayer;
+
+let botonFuego;
+let botonAgua;
+let botonTierra;
 
 
 function startGame(){
-    let botonMascotaPlayer = document.getElementById("boton-pet");
-
+    botonMascotaPlayer = document.getElementById("boton-pet");
     botonMascotaPlayer.addEventListener("click", petChosenPlayer);
+    botonMascotaPlayer.disabled = false;
 };
 
 function petChosenPlayer(){
@@ -78,37 +86,39 @@ function randomNumber(min, max){
 
 function petChosenEnemy(){
     let spanPetNameEnemy = document.getElementById("pet-name-enemy");
-    let namePets = ["Hipodoge", "Capipepon", "Ratinga", "Langostingi", "Tucapalma", "Paidoz"];
     spanPetNameEnemy.innerHTML = namePets[randomNumber(0,5)]; 
 }
 
 
 function enableAttack(){
 
-    let botonFuego = document.getElementById("boton-fuego");
+    botonFuego = document.getElementById("boton-fuego");
     botonFuego.disabled = false;
     botonFuego.addEventListener("click", ataquePlayerFuego);
-    let botonAgua = document.getElementById("boton-agua");
+    botonAgua = document.getElementById("boton-agua");
     botonAgua.disabled = false;
     botonAgua.addEventListener("click", ataquePlayerAgua);
-    let botonTierra = document.getElementById("boton-tierra");
+    botonTierra = document.getElementById("boton-tierra");
     botonTierra.disabled = false;
     botonTierra.addEventListener("click", ataquePlayerTierra);
 
 }
 
 function ataquePlayerAgua(){
+    ataque = ataque + 1;
     ataquePlayer = agua;
     elegirAtaqueEnemigo();
 }
 
 function ataquePlayerFuego(){
     ataquePlayer = fuego;
+    ataque = ataque + 1;
     elegirAtaqueEnemigo();
 }
 
 function ataquePlayerTierra(){
     ataquePlayer = tierra;
+    ataque = ataque + 1;
     elegirAtaqueEnemigo();
 }
 
@@ -138,9 +148,11 @@ function fight(){
         mostrarAtaques();
     } else{
         alert("aun esatmos trabajando para mas funciones - version ultra alfa")
+        enableReset();
+        disabledAttack();
     }
 
-
+    disabledPetChosenPlayer();
 }
 
 function mostrarAtaques(){
@@ -149,7 +161,17 @@ function mostrarAtaques(){
     attacksParagraph.innerHTML = "Tu mascota ataco con " + ataquePlayer + " y la mascota enemiga con " + ataqueEnemy + "<br />" + fightResult;
     
     sectionMessage.appendChild(attacksParagraph);
-    enableReset();
+}
+
+
+function disabledPetChosenPlayer(){
+    botonMascotaPlayer.disabled = true;
+}
+
+function disabledAttack(){
+    botonAgua.disabled = true;
+    botonFuego.disabled = true;
+    botonTierra.disabled = true;
 }
 
 function enableReset(){
@@ -160,6 +182,7 @@ function enableReset(){
 
 function resetGame(){
     alert("esta funcion aun esta en desarrollo ji ji ji JA");
+    window.location.reload();
 }
 
 
