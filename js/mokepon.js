@@ -37,8 +37,6 @@ let inputLangostingi;
 let inputTucapalma;
 let inputPaidoz;
 
-let sectionMessage;
-
 let spanPetNameEnemy;
 let spanPetNamePlayer;
 
@@ -49,13 +47,27 @@ let spanLostClashes;
 
 let botonReset;
 
-function startGame(){
-    botonMascotaPlayer = document.getElementById("boton-pet");
-    botonMascotaPlayer.addEventListener("click", petChosenPlayer);
-    botonMascotaPlayer.disabled = false;
-};
+let sectionChoosePet;
+let sectionAttacks;
+let sectionMessage;
+let sectionClashes;
+let sectionReset;
 
-function petChosenPlayer(){
+
+function enableVariables(){
+    botonMascotaPlayer = document.getElementById("boton-pet");
+
+    botonFuego = document.getElementById("boton-fuego");
+    botonAgua = document.getElementById("boton-agua");
+    botonTierra = document.getElementById("boton-tierra");
+
+
+    sectionChoosePet = document.getElementById("choose-pet");
+    sectionAttacks = document.getElementById("choose-attack");
+    sectionMessage = document.getElementById("mensajes");
+    sectionClashes = document.getElementById("enfrentamientos-jugados");
+    sectionReset = document.getElementById("reiniciar");
+
     inputHipodoge = document.getElementById("hipodoge");
     inputCapipepon = document.getElementById("capipepon");
     inputRatinga = document.getElementById("ratinga");
@@ -64,7 +76,21 @@ function petChosenPlayer(){
     inputPaidoz = document.getElementById("paidoz");
 
     spanPetNamePlayer = document.getElementById("pet-name-player");
+    spanPetNameEnemy = document.getElementById("pet-name-enemy");
+    spanVidasEnemy = document.getElementById("vidas-enemigo");
+    spanVidasPlayer = document.getElementById("vidas-jugador");
+    spanWinClashes = document.getElementById("enfrentamientos-ganados");
+    spanLostClashes = document.getElementById("enfrentamientos-perdidos");
 
+    startGame();
+}
+
+
+function startGame(){
+    botonMascotaPlayer.addEventListener("click", petChosenPlayer);
+};
+
+function petChosenPlayer(){
     let game = 1;
 
     if(inputHipodoge.checked){
@@ -108,20 +134,15 @@ function randomNumber(min, max){
 // amiguito oie, cuando tengas tiempo cumple este reto, has una array con el nombre de las macotas para usarlo tanto para el jugador como para el enemigo, ya lo hiciste con el enemigo te falta con el jugador
 
 function petChosenEnemy(){
-    spanPetNameEnemy = document.getElementById("pet-name-enemy");
     spanPetNameEnemy.innerHTML = namePets[randomNumber(0,5)]; 
 }
 
 
 function enableAttack(){
-
-    botonFuego = document.getElementById("boton-fuego");
     botonFuego.disabled = false;
     botonFuego.addEventListener("click", ataquePlayerFuego);
-    botonAgua = document.getElementById("boton-agua");
     botonAgua.disabled = false;
     botonAgua.addEventListener("click", ataquePlayerAgua);
-    botonTierra = document.getElementById("boton-tierra");
     botonTierra.disabled = false;
     botonTierra.addEventListener("click", ataquePlayerTierra);
 
@@ -152,9 +173,6 @@ function elegirAtaqueEnemigo(){
 }
 
 function fight(){
-    spanVidasEnemy = document.getElementById("vidas-enemigo");
-    spanVidasPlayer = document.getElementById("vidas-jugador");
-
    if(vidasPlayer > 0 && vidasEnemy > 0){
         if(ataquePlayer == ataqueEnemy){
             fightResult = draw;
@@ -176,7 +194,7 @@ function fight(){
 
 function mostrarAtaques(){
     let attacksParagraph = document.createElement("p");
-    sectionMessage = document.getElementById("mensajes");
+
     attacksParagraph.innerHTML = "Tu mascota ataco con " + ataquePlayer + " y la mascota enemiga con " + ataqueEnemy + "<br />" + fightResult;
     
     sectionMessage.appendChild(attacksParagraph);
@@ -186,7 +204,7 @@ function mostrarAtaques(){
 
 function finalMessage(){
     let finalMessageParagraph = document.createElement("p");
-    //sectionMessage = document.getElementById("mensajes");
+
     if(vidasEnemy == 0){
         finalMessageParagraph.innerHTML = finalWin;
         winClashes++;
@@ -254,14 +272,12 @@ function resetGame(){
 }
 
 function mostrarClashes(){
-    spanWinClashes = document.getElementById("enfrentamientos-ganados");
-    spanLostClashes = document.getElementById("enfrentamientos-perdidos");
     spanWinClashes.innerHTML = winClashes;
     spanLostClashes.innerHTML = lostClashes;
 }
 
 
-window.addEventListener("load", startGame);
+window.addEventListener("load", enableVariables);
 
 
 //aaa idea crear seccion de monedas que se ganaran con los combates con las cuales podras comprar vidas de la mascota :D
