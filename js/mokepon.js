@@ -19,6 +19,8 @@ let finalLost = "Uy que feo MIRE PARCE PUES - PERDIO EL ENFRENTAMIENTO - PARA LA
 
 let vidasPlayer = 3;
 let vidasEnemy = 3;
+let winClashes = 0;
+let lostClashes = 0;
 
 let ataque = 0;
 
@@ -42,6 +44,8 @@ let spanPetNamePlayer;
 
 let spanVidasPlayer;
 let spanVidasEnemy;
+let spanWinClashes;
+let spanLostClashes;
 
 let botonReset;
 
@@ -185,11 +189,14 @@ function finalMessage(){
     //sectionMessage = document.getElementById("mensajes");
     if(vidasEnemy == 0){
         finalMessageParagraph.innerHTML = finalWin;
+        winClashes++;
     } else if(vidasPlayer == 0){
         finalMessageParagraph.innerHTML = finalLost;
+        lostClashes++;
     }
     
     sectionMessage.appendChild(finalMessageParagraph);
+    mostrarClashes();
 }
 
 function vidasCero(){
@@ -246,6 +253,12 @@ function resetGame(){
     //window.location.reload();
 }
 
+function mostrarClashes(){
+    spanWinClashes = document.getElementById("enfrentamientos-ganados");
+    spanLostClashes = document.getElementById("enfrentamientos-perdidos");
+    spanWinClashes.innerHTML = winClashes;
+    spanLostClashes.innerHTML = lostClashes;
+}
 
 
 window.addEventListener("load", startGame);
